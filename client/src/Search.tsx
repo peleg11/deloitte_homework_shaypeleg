@@ -4,17 +4,18 @@ import { CiSearch } from 'react-icons/ci';
 import { Highlight } from './Highlight';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from './state/store';
-import { searchUsers, setUsers } from './state/users/usersSlice';
+import { searchUsers } from './state/users/usersSlice';
 
 export const Search = () => {
   const [currentQuery, setCurrentQuery] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
+  const [showResults, setShowResults] = useState(false);
 
   const dispatch = useDispatch<AppDispatch>();
   const { users } = useSelector((state: RootState) => state.users);
 
   return (
-    <>
+    <div className='search-wrapper'>
       <div className='input-wrapper'>
         <div className='dropdown-wrapper'>
           <input
@@ -33,7 +34,10 @@ export const Search = () => {
               dispatch(searchUsers(currentQuery));
               setShowDropdown(true);
             }}
-            onBlur={() => setShowDropdown(false)}
+            onBlur={() => {
+              setShowDropdown(false);
+              setShowResults(false);
+            }}
           />
           {showDropdown && users.length && (
             <ul className='dropdown'>
@@ -61,10 +65,25 @@ export const Search = () => {
             </ul>
           )}
         </div>
-        <button className='search-button'>
+        <button className='search-button' onClick={() => setShowResults(true)}>
           <CiSearch />
         </button>
       </div>
-    </>
+      {showResults && !showDropdown && (
+        <ul className='results'>
+          {users.map(({ name, id, image_url, work_title }: User) => (
+            <li className='item' key={id} onMouseDown={e => e.preventDefault()}>
+              <div className='item-content'>
+                <img src={image_url} />
+                <div className='item-text'>
+                  <span className='item-name'>{name}</span>
+                  {work_title}
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
   );
 };
