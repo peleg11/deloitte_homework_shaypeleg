@@ -1,3 +1,4 @@
+/* general */
 * {
   margin: 0;
   padding: 0;
@@ -20,7 +21,8 @@ body {
   align-items: center;
   flex-direction: column;
 }
-
+/* ***************************** */
+/* Headline.tsx */
 .header {
   display: flex;
   flex-direction: column;
@@ -35,6 +37,15 @@ body {
   color: #30acac;
   text-transform: uppercase;
   letter-spacing: 0.5rem;
+}
+/* ***************************** */
+/* Search.tsx */
+.search-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  gap: 2rem;
 }
 
 .input-wrapper {
@@ -61,21 +72,6 @@ body {
   filter: drop-shadow(-2px 3px 10px #999999);
 }
 
-.search-button {
-  width: 46px;
-  height: 42px;
-  border: none;
-  outline: none;
-  border-radius: 50%;
-  font-size: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  background-color: #30acac;
-  cursor: pointer;
-}
-
 .dropdown {
   position: absolute;
   top: 10px;
@@ -86,6 +82,31 @@ body {
   overflow: auto;
   border-radius: 1.4rem;
   scroll-margin: 20px;
+}
+/* handle scorllbar style */
+.dropdown::-webkit-scrollbar {
+  width: 16px;
+  border: 1px solid black;
+}
+
+.dropdown::-webkit-scrollbar-track-piece {
+  background: #a6a6a6;
+}
+
+.dropdown::-webkit-scrollbar-thumb {
+  background: #30acac;
+}
+
+.dropdown::-webkit-scrollbar-button:end:increment {
+  display: block;
+  background: #a6a6a6;
+  border-radius: 0 0 1.5rem 0;
+}
+
+.dropdown::-webkit-scrollbar-button:start:increment {
+  display: block;
+  background: #a6a6a6;
+  border-radius: 0 1.5rem 0 0;
 }
 
 .item {
@@ -124,31 +145,21 @@ body {
   font-weight: 900;
 }
 
-.dropdown::-webkit-scrollbar {
-  width: 16px;
-  border: 1px solid black;
+.search-button {
+  width: 46px;
+  height: 42px;
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: #30acac;
+  cursor: pointer;
 }
-
-.dropdown::-webkit-scrollbar-track-piece {
-  background: #a6a6a6;
-}
-
-.dropdown::-webkit-scrollbar-thumb {
-  background: #30acac;
-}
-
-.dropdown::-webkit-scrollbar-button:end:increment {
-  display: block;
-  background: #a6a6a6;
-  border-radius: 0 0 1.5rem 0;
-}
-
-.dropdown::-webkit-scrollbar-button:start:increment {
-  display: block;
-  background: #a6a6a6;
-  border-radius: 0 1.5rem 0 0;
-}
-
+/* Results.tsx */
 .results {
   width: 50%;
   border-radius: 1.4rem;
@@ -161,11 +172,4 @@ body {
 }
 .results > .item:hover {
   background-color: #d9d9d9;
-}
-.search-wrapper {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  align-items: center;
-  gap: 2rem;
 }

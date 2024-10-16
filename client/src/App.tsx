@@ -1,6 +1,6 @@
 import './App.css';
-import { Headline } from './Headline';
-import { Search } from './Search';
+import { Headline } from './components/Headline';
+import { Search } from './components/Search';
 
 function App() {
   return (

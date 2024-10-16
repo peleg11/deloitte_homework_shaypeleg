@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { User } from './types';
+import { User } from '../types';
 import { CiSearch } from 'react-icons/ci';
 import { Highlight } from './Highlight';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from './state/store';
-import { searchUsers } from './state/users/usersSlice';
+import { AppDispatch, RootState } from '../state/store';
+import { searchUsers } from '../state/users/usersSlice';
+import { Results } from './Results';
 
 export const Search = () => {
   const [currentQuery, setCurrentQuery] = useState('');
@@ -69,21 +70,7 @@ export const Search = () => {
           <CiSearch />
         </button>
       </div>
-      {showResults && !showDropdown && (
-        <ul className='results'>
-          {users.map(({ name, id, image_url, work_title }: User) => (
-            <li className='item' key={id} onMouseDown={e => e.preventDefault()}>
-              <div className='item-content'>
-                <img src={image_url} />
-                <div className='item-text'>
-                  <span className='item-name'>{name}</span>
-                  {work_title}
-                </div>
-              </div>
-            </li>
-          ))}
-        </ul>
-      )}
+      {showResults && !showDropdown && <Results users={users} />}
     </div>
   );
 };
